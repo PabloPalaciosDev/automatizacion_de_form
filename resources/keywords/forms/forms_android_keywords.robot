@@ -130,4 +130,8 @@ Verificar Envio Exitoso
 Cerrar Modal
     Wait Until Element Is Visible    xpath=//*[@id='closeLargeModal']    timeout=${TIMEOUT}
     Execute Script    document.getElementById('closeLargeModal').click();
-    Sleep    1s
+    Wait Until Keyword Succeeds    10x    500ms    Verificar Modal Cerrado
+
+Verificar Modal Cerrado
+    ${modal_abierto}=    Execute Script    return document.querySelector('.modal.show') !== null;
+    Should Be Equal    ${modal_abierto}    ${False}
