@@ -96,9 +96,11 @@ Seleccionar Estado
     ${js_state}=    FormsHelper.Js Click Estado
     Execute Script    ${js_state}
     Sleep    2s
-    ${js_opcion}=    FormsHelper.Js Click Opcion Dropdown    ${estado}
+    ${js_opcion}=    FormsHelper.Js Click Opcion Dropdown    state    ${estado}
     Execute Script    ${js_opcion}
     Sleep    1.5s
+    Wait Until Element Is Visible    xpath=//*[@id='state']//div[contains(@class,'singleValue')]    timeout=${TIMEOUT}
+    Element Should Contain Text    xpath=//*[@id='state']//div[contains(@class,'singleValue')]    ${estado}
 
 Seleccionar Ciudad
     [Arguments]    ${ciudad}
@@ -107,9 +109,11 @@ Seleccionar Ciudad
     ${js_city}=    FormsHelper.Js Click Ciudad
     Execute Script    ${js_city}
     Sleep    2s
-    ${js_opcion}=    FormsHelper.Js Click Opcion Dropdown    ${ciudad}
+    ${js_opcion}=    FormsHelper.Js Click Opcion Dropdown    city    ${ciudad}
     Execute Script    ${js_opcion}
     Sleep    1.5s
+    Wait Until Element Is Visible    xpath=//*[@id='city']//div[contains(@class,'singleValue')]    timeout=${TIMEOUT}
+    Element Should Contain Text    xpath=//*[@id='city']//div[contains(@class,'singleValue')]    ${ciudad}
 
 Enviar Formulario
     ${js_scroll}=    FormsHelper.Js Scroll Bottom
